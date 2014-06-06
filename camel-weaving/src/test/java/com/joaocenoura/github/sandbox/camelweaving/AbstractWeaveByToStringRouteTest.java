@@ -27,8 +27,8 @@ public abstract class AbstractWeaveByToStringRouteTest extends AbstractRouteTest
                         mockEndpoints();
 
                         // add these two mocks: before and after checkpoint
-                        weaveByToString(".*checkpoint.*").before().to("mock:checkpoint.before");
-                        weaveByToString(".*checkpoint.*").after().to("mock:checkpoint.after");
+                        weaveByToString("To[mock:checkpoint]").before().to("mock:checkpoint.before");
+                        weaveByToString("To[mock:checkpoint]").after().to("mock:checkpoint.after");
                     }
                 });
     }
