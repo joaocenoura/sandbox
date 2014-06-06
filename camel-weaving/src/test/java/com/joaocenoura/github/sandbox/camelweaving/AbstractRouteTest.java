@@ -6,7 +6,6 @@
 package com.joaocenoura.github.sandbox.camelweaving;
 
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -15,26 +14,9 @@ import org.junit.Test;
  * method. The test simply sends a body "dummyPayload" to "direct:start"
  * endpoint and performs some assertions.
  *
- * @author João Rodrigues
+ * @author João Rodrigues <joao-l-rodrigues@telecom.pt>
  */
 public abstract class AbstractRouteTest extends CamelTestSupport {
-
-    @Override
-    protected void doPostSetup() throws Exception {
-        context.getRouteDefinitions().get(0).adviceWith(
-                context,
-                new AdviceWithRouteBuilder() {
-                    @Override
-                    public void configure() throws Exception {
-                        // mock all endpoints
-                        mockEndpoints();
-
-                        // add these two mocks: before and after checkpoint
-                        weaveById("checkpoint").before().to("mock:checkpoint.before");
-                        weaveById("checkpoint").after().to("mock:checkpoint.after");
-                    }
-                });
-    }
 
     @Test
     public void test() throws InterruptedException {

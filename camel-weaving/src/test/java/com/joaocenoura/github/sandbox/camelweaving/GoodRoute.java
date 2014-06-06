@@ -13,19 +13,13 @@ import org.apache.camel.builder.RouteBuilder;
  *
  * @author João Rodrigues
  */
-public class GoodRouteTest extends AbstractRouteTest {
+public class GoodRoute extends RouteBuilder {
 
     @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-
-            @Override
-            public void configure() throws Exception {
-                from("direct:start").id("start")
-                        .to("mock:checkpoint").id("checkpoint")
-                        .to("mock:end").id("end");
-            }
-        };
+    public void configure() {
+        from("direct:start").id("start")
+                .to("mock:checkpoint").id("checkpoint")
+                .to("mock:end").id("end");
     }
 
 }
